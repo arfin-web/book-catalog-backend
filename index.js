@@ -53,7 +53,7 @@ app.get('/books', async (req, res) => {
 app.get('/books/:id', async (req, res) => {
     try {
         const bookId = req.params.id;
-        const book = await db.collection(collectionName).findOne({ _id: ObjectId(bookId) });
+        const book = await db.collection(collectionName).findOne({ _id: new ObjectId(bookId) });
         if (!book) {
             return res.status(404).json({ message: 'Book not found' });
         }
