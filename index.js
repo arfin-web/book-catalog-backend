@@ -33,9 +33,10 @@ app.post('/books', async (req, res) => {
     try {
         const book = req.body;
         const result = await db.collection(collectionName).insertOne(book);
-        res.json(result.ops[0]);
+        res.json(result);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        console.error('Error inserting book:', error);
+        res.status(400).json({ message: 'Failed to insert book' });
     }
 });
 
