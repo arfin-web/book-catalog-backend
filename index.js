@@ -69,7 +69,7 @@ app.put('/books/:id', async (req, res) => {
     try {
         const bookId = req.params.id;
         const updatedBook = req.body;
-        const result = await db.collection(collectionName).updateOne({ _id: ObjectId(bookId) }, { $set: updatedBook });
+        const result = await db.collection(collectionName).updateOne({ _id: new ObjectId(bookId) }, { $set: updatedBook });
         if (result.matchedCount === 0) {
             return res.status(404).json({ message: 'Book not found' });
         }
