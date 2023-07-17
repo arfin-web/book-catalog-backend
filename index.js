@@ -83,7 +83,7 @@ app.put('/books/:id', async (req, res) => {
 app.delete('/books/:id', async (req, res) => {
     try {
         const bookId = req.params.id;
-        const result = await db.collection(collectionName).deleteOne({ _id: ObjectId(bookId) });
+        const result = await db.collection(collectionName).deleteOne({ _id: new ObjectId(bookId) });
         if (result.deletedCount === 0) {
             return res.status(404).json({ message: 'Book not found' });
         }
